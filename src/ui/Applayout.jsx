@@ -1,5 +1,12 @@
+import { Outlet } from "react-router";
+
 function Applayout() {
-  return <div>Hell with you</div>;
+  return (
+    <div>
+      <p>Hell with you</p>
+      <Outlet />
+    </div>
+  );
 }
 
 export default Applayout;
