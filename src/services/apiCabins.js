@@ -5,7 +5,14 @@ export async function getCabins() {
 
   if (error) console.log("Cabins cannot be loaded");
 
-  console.log(data);
-
   return data;
+}
+
+export async function deleteCabins(id) {
+  const { error } = await supabase.from("cabins").delete().eq("id", id);
+
+  if (error) {
+    console.log(error);
+    throw new Error("Cabin couldn't be deleted");
+  }
 }

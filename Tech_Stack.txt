@@ -3,3 +3,8 @@ Styled Components
 React Query
 Context API
 React Hook Forms
+
+
+Miscellenious
+
+React-toast

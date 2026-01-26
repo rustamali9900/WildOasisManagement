@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../ui/Spinner";
 import styled from "styled-components";
 import CabinRow from "./CabinRow";
+import toast from "react-hot-toast";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -29,12 +30,20 @@ const TableHeader = styled.header`
 `;
 
 function CabinTable() {
-  const { isPending, data: cabins } = useQuery({
-    queryKey: ["cabin"],
+  const {
+    isPending,
+    data: cabins,
+    error,
+  } = useQuery({
+    queryKey: ["cabins"],
     queryFn: getCabins,
   });
 
   if (isPending) return <Spinner />;
+  if (error) {
+    toast.error(error.message);
+    return;
+  }
 
   return (
     <Table role="table">
@@ -44,6 +53,7 @@ function CabinTable() {
         <div>Capacity</div>
         <div>Price</div>
         <div>Discount</div>
+        <div></div>
       </TableHeader>
       {cabins.map((el) => (
         <CabinRow cabin={el} key={el.id} />
