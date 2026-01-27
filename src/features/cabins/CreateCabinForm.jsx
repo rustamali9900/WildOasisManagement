@@ -28,7 +28,7 @@ function CreateCabinForm() {
   });
 
   function onSubmit(data) {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   }
 
   return (
@@ -72,7 +72,7 @@ function CreateCabinForm() {
           {...register("discount", {
             required: "This field is required",
             validate: (value) =>
-              value <= getValues().regularPrice ||
+              value < getValues().regularPrice ||
               "Discount should always be less than the price",
           })}
         />
@@ -80,7 +80,7 @@ function CreateCabinForm() {
 
       <FormRow errors={errors?.description?.message} label={"Description"}>
         <Textarea
-          type="number"
+          type="text"
           disabled={isPending}
           id="description"
           defaultValue=""
@@ -88,11 +88,16 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      {/* <FormRow>
-        <Label htmlFor="image">Cabin photo</Label>
-        <FileInput id="image" accept="image/*" />
-      </FormRow> */}
-      {/* 
+      <FormRow label="Cabin photo">
+        <FileInput
+          id="image"
+          accept="image/*"
+          {...register("image", {
+            required: "This field is required",
+          })}
+        />
+      </FormRow>
+
       <FormRow>
         <Button $variation="secondary" $size="medium" type={"reset"}>
           Cancel
@@ -100,10 +105,7 @@ function CreateCabinForm() {
         <Button $variation="primary" $size="medium" disabled={isPending}>
           Add cabin
         </Button>
-      </FormRow> */}
-      <Button $variation="primary" $size="medium" disabled={isPending}>
-        Add cabin
-      </Button>
+      </FormRow>
     </Form>
   );
 }
