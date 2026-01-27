@@ -37,6 +37,7 @@ function CreateCabinForm() {
         <Input
           type="text"
           id="name"
+          disabled={isPending}
           {...register("name", { required: "This field is required" })}
         />
       </FormRow>
@@ -44,6 +45,7 @@ function CreateCabinForm() {
       <FormRow errors={errors?.maxCapacity?.message} label={"Maximum Guests"}>
         <Input
           type="number"
+          disabled={isPending}
           id="maxCapacity"
           {...register("maxCapacity", {
             required: "This field is required",
@@ -54,6 +56,7 @@ function CreateCabinForm() {
 
       <FormRow errors={errors?.regularPrice?.message} label={"Regular Price"}>
         <Input
+          disabled={isPending}
           type="number"
           id="regularPrice"
           {...register("regularPrice", { required: "This field is required" })}
@@ -63,6 +66,7 @@ function CreateCabinForm() {
       <FormRow errors={errors?.discount?.message} label={"Discount"}>
         <Input
           type="number"
+          disabled={isPending}
           id="discount"
           defaultValue={0}
           {...register("discount", {
@@ -77,6 +81,7 @@ function CreateCabinForm() {
       <FormRow errors={errors?.description?.message} label={"Description"}>
         <Textarea
           type="number"
+          disabled={isPending}
           id="description"
           defaultValue=""
           {...register("description", { required: "This field is required" })}
