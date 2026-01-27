@@ -1,0 +1,6 @@
+1. npm i react-hot-toast
+used for throwing popups for errors and stuff. Should be Defined in appjsx
+
+2. React Forms 
+
+used for handling form submissions and form errors

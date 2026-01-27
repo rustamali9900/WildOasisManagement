@@ -1,4 +1,0 @@
-npm i react-hot-toast
-
-
-used for throwing popups for errors and stuff. Should be Defined in appjsx
