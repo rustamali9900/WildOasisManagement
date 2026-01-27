@@ -3,47 +3,11 @@ import { createCabin } from "../../services/apiCabins";
 import FileInput from "../../ui/FileInput";
 import { useForm } from "react-hook-form";
 import Textarea from "../../ui/Textarea";
-import styled from "styled-components";
 import Button from "../../ui/Button";
 import toast from "react-hot-toast";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
-
-const FormRow = styled.div`
-  display: grid;
-  align-items: center;
-  grid-template-columns: 24rem 1fr 1.2fr;
-  gap: 2.4rem;
-
-  padding: 1.2rem 0;
-
-  &:first-child {
-    padding-top: 0;
-  }
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-100);
-  }
-
-  &:has(button) {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1.2rem;
-  }
-`;
-
-const Label = styled.label`
-  font-weight: 500;
-`;
-
-const Error = styled.span`
-  font-size: 1.4rem;
-  color: var(--color-red-700);
-`;
+import FormRow from "../../ui/FormRow";
 
 function CreateCabinForm() {
   const queryClient = useQueryClient();
@@ -66,24 +30,18 @@ function CreateCabinForm() {
   function onSubmit(data) {
     mutate(data);
   }
-  function onError(err) {
-    console.log(err);
-  }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <FormRow>
-        <Label htmlFor="name">Cabin name</Label>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormRow errors={errors?.name?.message} label={"Cabin name"}>
         <Input
           type="text"
           id="name"
           {...register("name", { required: "This field is required" })}
         />
-        {errors?.name?.message && <Error>{errors.name.message}</Error>}
       </FormRow>
 
-      <FormRow>
-        <Label htmlFor="maxCapacity">Maximum capacity</Label>
+      <FormRow errors={errors?.maxCapacity?.message} label={"Maximum Guests"}>
         <Input
           type="number"
           id="maxCapacity"
@@ -94,8 +52,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
-        <Label htmlFor="regularPrice">Regular price</Label>
+      <FormRow errors={errors?.regularPrice?.message} label={"Regular Price"}>
         <Input
           type="number"
           id="regularPrice"
@@ -103,8 +60,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
-        <Label htmlFor="discount">Discount</Label>
+      <FormRow errors={errors?.discount?.message} label={"Discount"}>
         <Input
           type="number"
           id="discount"
@@ -118,8 +74,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
-        <Label htmlFor="description">Description for website</Label>
+      <FormRow errors={errors?.description?.message} label={"Description"}>
         <Textarea
           type="number"
           id="description"
@@ -128,11 +83,11 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
+      {/* <FormRow>
         <Label htmlFor="image">Cabin photo</Label>
         <FileInput id="image" accept="image/*" />
-      </FormRow>
-
+      </FormRow> */}
+      {/* 
       <FormRow>
         <Button $variation="secondary" $size="medium" type={"reset"}>
           Cancel
@@ -140,7 +95,10 @@ function CreateCabinForm() {
         <Button $variation="primary" $size="medium" disabled={isPending}>
           Add cabin
         </Button>
-      </FormRow>
+      </FormRow> */}
+      <Button $variation="primary" $size="medium" disabled={isPending}>
+        Add cabin
+      </Button>
     </Form>
   );
 }
