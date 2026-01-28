@@ -3,11 +3,11 @@ import { createEditCabin } from "../../services/apiCabins";
 import FileInput from "../../ui/FileInput";
 import { useForm } from "react-hook-form";
 import Textarea from "../../ui/Textarea";
+import FormRow from "../../ui/FormRow";
 import Button from "../../ui/Button";
 import toast from "react-hot-toast";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
-import FormRow from "../../ui/FormRow";
 
 function CreateCabinForm({ cabinToEdit = {} }) {
   const { id: editId, ...editValues } = cabinToEdit;
