@@ -21,7 +21,8 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const { errors } = formState;
 
   const { mutate: createCabin, isPending: isCreating } = useMutation({
-    mutationFn: createEditCabin,
+    // We explicitly pass only the data here
+    mutationFn: (newCabin) => createEditCabin(newCabin),
 
     onSuccess: () => {
       toast.success("Cabin Created Successfully");
@@ -33,7 +34,8 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   });
 
   const { mutate: editCabin, isPending: isEditing } = useMutation({
-    mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
+    // Here we destructure the object to pass two separate arguments to the API
+    mutationFn: ({ newCabin, id }) => createEditCabin(newCabin, id),
 
     onSuccess: () => {
       toast.success("Cabin Created Successfully");
@@ -49,7 +51,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
     if (isEditSession)
       editCabin(
-        { newCabinData: { ...data, image }, id: editId },
+        { newCabin: { ...data, image }, id: editId },
         {
           onSuccess: () => {
             reset();

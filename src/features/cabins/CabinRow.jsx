@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const TableRow = styled.div`
   display: grid;
+  /* Standard 6-column grid for desktop */
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
   column-gap: 2.4rem;
   align-items: center;
@@ -15,6 +16,30 @@ const TableRow = styled.div`
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-100);
+  }
+
+  /* Responsive: Tablet/Large Phone */
+  @media (max-width: 992px) {
+    grid-template-columns: 0.8fr 2fr 1fr 1fr; /* Merge/Remove some columns */
+    column-gap: 1.6rem;
+
+    /* Hide the "Fits upto..." column on tablets to save space */
+    & > div:nth-child(3) {
+      display: none;
+    }
+  }
+
+  /* Responsive: Mobile */
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr; /* Switch to 2 columns */
+    row-gap: 1.2rem;
+    padding: 1.6rem;
+
+    /* Hide image or non-essentials on very small screens if desired */
+    & > div:nth-child(5) {
+      /* Discount */
+      display: none;
+    }
   }
 `;
 
@@ -24,7 +49,13 @@ const Img = styled.img`
   aspect-ratio: 3 / 2;
   object-fit: cover;
   object-position: center;
-  transform: scale(1.5) translateX(-7px);
+  transform: scale(1.5);
+
+  @media (max-width: 600px) {
+    transform: scale(1); /* Reset scale on mobile */
+    width: 100%;
+    max-width: 80px;
+  }
 `;
 
 const Cabin = styled.div`
@@ -37,12 +68,59 @@ const Cabin = styled.div`
 const Price = styled.div`
   font-family: "Sono";
   font-weight: 600;
+
+  @media (max-width: 600px) {
+    text-align: right;
+  }
 `;
 
 const Discount = styled.div`
   font-family: "Sono";
   font-weight: 500;
   color: var(--color-green-700);
+  text-align: center;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 0.8rem;
+  justify-content: start;
+
+  @media (max-width: 600px) {
+    grid-column: 1 / -1; /* Buttons take full width at the bottom */
+    justify-content: flex-end;
+    border-top: 1px solid var(--color-grey-100);
+    padding-top: 1rem;
+  }
+
+  & button {
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: 0.4rem 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  & button:first-child {
+    background-color: var(--color-red-700);
+    color: var(--color-red-100);
+
+    &:hover {
+      background-color: var(--color-red-800);
+    }
+  }
+
+  & button:last-child {
+    background-color: #4f46e5;
+    color: #fff;
+
+    &:hover {
+      background-color: #4338ca;
+    }
+  }
 `;
 
 function CabinRow({ cabin }) {
@@ -66,13 +144,17 @@ function CabinRow({ cabin }) {
         <Cabin>{name}</Cabin>
         <div>Fits upto {maxCapacity} guests</div>
         <Price>{formatCurrency(regularPrice)}</Price>
-        <Discount>{formatCurrency(discount)}</Discount>
-        <div>
+        {discount ? (
+          <Discount>{formatCurrency(discount)}</Discount>
+        ) : (
+          <div style={{ textAlign: "center" }}>&mdash;</div>
+        )}
+        <ButtonGroup>
           <button onClick={() => mutate(cabin.id)} disabled={isPending}>
             Delete
           </button>
           <button onClick={() => setShowForm((show) => !show)}>Edit</button>
-        </div>
+        </ButtonGroup>
       </TableRow>
       {showForm && <CreateCabinForm cabinToEdit={cabin} />}
     </>
