@@ -17,9 +17,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   });
 
   const { errors } = formState;
-
   const { createCabin, isCreating } = useCreateCabin(reset);
-
   const { editCabin, isEditing } = useEditCabin(reset);
 
   function onSubmit(data) {

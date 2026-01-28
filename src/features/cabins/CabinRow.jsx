@@ -1,6 +1,7 @@
 import { formatCurrency } from "../../utils/helpers";
 import { useDeleteCabin } from "./useDeleteCabin";
 import CreateCabinForm from "./CreateCabinForm";
+import { HiSquare2Stack, HiPencil, HiTrash } from "react-icons/hi2";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -141,9 +142,14 @@ function CabinRow({ cabin }) {
         )}
         <ButtonGroup>
           <button onClick={() => mutate(cabin.id)} disabled={isPending}>
-            Delete
+            <HiTrash />
           </button>
-          <button onClick={() => setShowForm((show) => !show)}>Edit</button>
+          <button onClick={() => setShowForm((show) => !show)}>
+            <HiPencil />
+          </button>
+          <button>
+            <HiSquare2Stack />
+          </button>
         </ButtonGroup>
       </TableRow>
       {showForm && <CreateCabinForm cabinToEdit={cabin} />}
