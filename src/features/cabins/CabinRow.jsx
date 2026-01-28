@@ -1,9 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteCabins } from "../../services/apiCabins";
 import { formatCurrency } from "../../utils/helpers";
+import { useDeleteCabin } from "./useDeleteCabin";
 import CreateCabinForm from "./CreateCabinForm";
 import styled from "styled-components";
-import toast from "react-hot-toast";
 import { useState } from "react";
 
 const TableRow = styled.div`
@@ -124,18 +122,10 @@ const ButtonGroup = styled.div`
 `;
 
 function CabinRow({ cabin }) {
-  const queryClient = useQueryClient();
   const [showForm, setShowForm] = useState(false);
   const { name, regularPrice, maxCapacity, discount, image } = cabin;
 
-  const { isPending, mutate } = useMutation({
-    mutationFn: (id) => deleteCabins(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      toast.success("Cabin deleted successfully");
-    },
-    onError: (err) => toast.error(err.message),
-  });
+  const { isPending, mutate } = useDeleteCabin();
 
   return (
     <>

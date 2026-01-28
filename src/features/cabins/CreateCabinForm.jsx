@@ -1,50 +1,26 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createEditCabin } from "../../services/apiCabins";
 import FileInput from "../../ui/FileInput";
 import { useForm } from "react-hook-form";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
 import Button from "../../ui/Button";
-import toast from "react-hot-toast";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
+import { useCreateCabin } from "./useCreateCabin";
+import { useEditCabin } from "./useEditCabin";
 
 function CreateCabinForm({ cabinToEdit = {} }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
 
-  const queryClient = useQueryClient();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: isEditSession ? editValues : {},
   });
 
   const { errors } = formState;
 
-  const { mutate: createCabin, isPending: isCreating } = useMutation({
-    // We explicitly pass only the data here
-    mutationFn: (newCabin) => createEditCabin(newCabin),
+  const { createCabin, isCreating } = useCreateCabin(reset);
 
-    onSuccess: () => {
-      toast.success("Cabin Created Successfully");
-      queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      reset();
-    },
-
-    onError: (err) => toast.error(err.message),
-  });
-
-  const { mutate: editCabin, isPending: isEditing } = useMutation({
-    // Here we destructure the object to pass two separate arguments to the API
-    mutationFn: ({ newCabin, id }) => createEditCabin(newCabin, id),
-
-    onSuccess: () => {
-      toast.success("Cabin Created Successfully");
-      queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      reset();
-    },
-
-    onError: (err) => toast.error(err.message),
-  });
+  const { editCabin, isEditing } = useEditCabin(reset);
 
   function onSubmit(data) {
     const image = typeof data.image === "string" ? data.image : data.image[0];
