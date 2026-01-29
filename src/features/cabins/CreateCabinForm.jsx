@@ -8,7 +8,7 @@ import Form from "../../ui/Form";
 import { useCreateCabin } from "./useCreateCabin";
 import { useEditCabin } from "./useEditCabin";
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onClose }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
 
@@ -29,6 +29,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         {
           onSuccess: () => {
             reset();
+            onClose?.();
           },
         },
       );
@@ -38,13 +39,17 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         {
           onSuccess: () => {
             reset();
+            onClose?.();
           },
         },
       );
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      type={onClose ? "modal" : "regular"}
+    >
       <FormRow errors={errors?.name?.message} label={"Cabin name"}>
         <Input
           type="text"
@@ -111,7 +116,12 @@ function CreateCabinForm({ cabinToEdit = {} }) {
       </FormRow>
 
       <FormRow>
-        <Button $variation="secondary" $size="medium" type={"reset"}>
+        <Button
+          $variation="secondary"
+          $size="medium"
+          type={"reset"}
+          onClick={() => onClose?.()}
+        >
           Cancel
         </Button>
         <Button
