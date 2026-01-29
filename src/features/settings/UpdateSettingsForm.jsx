@@ -4,11 +4,11 @@ import styled from "styled-components";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
-import { useSettings } from "./useSettings";
 import Spinner from "../../ui/Spinner";
+import { useSettings } from "./useSettings";
 import { useEditSettings } from "./useEditSettings";
 
-// Styled Components for the buttons
+// Styled components for the button layout
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -16,7 +16,7 @@ const ButtonGroup = styled.div`
   padding-top: 1.2rem;
 `;
 
-const Button = styled.button`
+const FormButton = styled.button`
   font-size: 1.4rem;
   padding: 1.2rem 1.6rem;
   font-weight: 500;
@@ -25,7 +25,6 @@ const Button = styled.button`
   cursor: pointer;
   transition: all 0.2s;
 
-  /* Primary Update Button style */
   ${(props) =>
     props.$variation === "primary" &&
     `
@@ -36,7 +35,6 @@ const Button = styled.button`
     }
   `}
 
-  /* Secondary Cancel Button style */
   ${(props) =>
     props.$variation === "secondary" &&
     `
@@ -55,7 +53,7 @@ const Button = styled.button`
   }
 `;
 
-function UpdateSettingsForm() {
+function UpdateSettingsForm({ onClose }) {
   const {
     isPending,
     settings: {
@@ -67,13 +65,26 @@ function UpdateSettingsForm() {
   } = useSettings();
 
   const { editSetting, isEditing } = useEditSettings();
+
+  // 1. Setup React Hook Form
   const { register, handleSubmit, reset } = useForm();
 
   if (isPending) return <Spinner />;
 
+  // 2. Handle successful submission
   function onSubmit(data) {
-    // Only send values that aren't empty
-    editSetting(data);
+    editSetting(data, {
+      onSuccess: () => {
+        onClose?.(); // Closes the form and returns to menu
+      },
+    });
+  }
+
+  // 3. Handle manual cancel
+  function handleCancel(e) {
+    e.preventDefault(); // Prevent form trigger
+    reset(); // Reset to initial values
+    onClose?.(); // "Shut" the form back to menu
   }
 
   return (
@@ -118,19 +129,18 @@ function UpdateSettingsForm() {
         />
       </FormRow>
 
-      {/* Button Section */}
       <ButtonGroup>
-        <Button
-          type="button"
+        <FormButton
           $variation="secondary"
+          type="button"
           disabled={isEditing}
-          onClick={() => reset()}
+          onClick={handleCancel}
         >
           Cancel
-        </Button>
-        <Button $variation="primary" disabled={isEditing}>
+        </FormButton>
+        <FormButton $variation="primary" disabled={isEditing}>
           Update settings
-        </Button>
+        </FormButton>
       </ButtonGroup>
     </Form>
   );
