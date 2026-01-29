@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import CreateCabinForm from "../features/cabins/CreateCabinForm";
+import { HiXCircle } from "react-icons/hi2";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -48,3 +50,18 @@ const Button = styled.button`
     color: var(--color-grey-500);
   }
 `;
+
+function Modal({ children, onClose }) {
+  return (
+    <Overlay>
+      <StyledModal>
+        <Button onClick={onClose}>
+          <HiXCircle />
+        </Button>
+        <div>{children}</div>
+      </StyledModal>
+    </Overlay>
+  );
+}
+
+export default Modal;
