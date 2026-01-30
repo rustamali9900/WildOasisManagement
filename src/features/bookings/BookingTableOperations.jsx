@@ -1,11 +1,11 @@
 import SortBy from "../../ui/SortBy";
-import Filter from "../../ui/Filter";
+import FilterBookings from "../../ui/FilterBookings";
 import TableOperations from "../../ui/TableOperations";
 
 function BookingTableOperations() {
   return (
     <TableOperations>
-      <Filter
+      <FilterBookings
         filterField="status"
         options={[
           { value: "all", label: "All" },
