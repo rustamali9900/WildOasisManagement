@@ -7,7 +7,6 @@ import Empty from "../../ui/Empty";
 
 function BookingTable() {
   const { isPending, bookings, error } = useBookings();
-  console.log(error);
 
   if (isPending) return <Spinner />;
 
