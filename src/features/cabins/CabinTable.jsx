@@ -4,6 +4,7 @@ import Spinner from "../../ui/Spinner";
 import styled from "styled-components";
 import CabinRow from "./CabinRow";
 import toast from "react-hot-toast";
+import { useSearchParams } from "react-router";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -30,6 +31,9 @@ const TableHeader = styled.header`
 `;
 
 function CabinTable() {
+  const [searchParams] = useSearchParams();
+  const filterValue = searchParams.get("discount") || "all";
+
   const {
     isPending,
     data: cabins,
@@ -38,6 +42,16 @@ function CabinTable() {
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
+
+  let filteredCabins;
+
+  if (filterValue === "all") {
+    filteredCabins = cabins;
+  } else if (filterValue === "no-discount") {
+    filteredCabins = cabins.filter((cabin) => cabin.discount === 0);
+  } else if (filterValue === "with-discount") {
+    filteredCabins = cabins.filter((cabin) => Number(cabin.discount) > 0);
+  }
 
   if (isPending) return <Spinner />;
   if (error) {
@@ -55,7 +69,7 @@ function CabinTable() {
         <div>Discount</div>
         <div></div>
       </TableHeader>
-      {cabins.map((el) => (
+      {filteredCabins.map((el) => (
         <CabinRow cabin={el} key={el.id} />
       ))}
     </Table>
