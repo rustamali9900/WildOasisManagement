@@ -1,10 +1,10 @@
-import { getCabins } from "../../services/apiCabins";
-import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../ui/Spinner";
 import styled from "styled-components";
 import CabinRow from "./CabinRow";
 import toast from "react-hot-toast";
 import { useSearchParams } from "react-router";
+import Empty from "../../ui/Empty";
+import useCabins from "./useCabins";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -34,14 +34,9 @@ function CabinTable() {
   const [searchParams] = useSearchParams();
   const filterValue = searchParams.get("discount") || "all";
 
-  const {
-    isPending,
-    data: cabins,
-    error,
-  } = useQuery({
-    queryKey: ["cabins"],
-    queryFn: getCabins,
-  });
+  const { isPending, cabins, error } = useCabins();
+
+  if (!cabins?.length) return <Empty resource={"Cabins"} />;
 
   let filteredCabins;
 
