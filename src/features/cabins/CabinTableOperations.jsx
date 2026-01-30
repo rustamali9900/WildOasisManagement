@@ -9,7 +9,7 @@ function CabinTableOperations() {
       <SortBy
         options={[
           { value: "name-asc", label: "Sort by Name" },
-          { value: "price-asc", label: "Sort by Price" },
+          { value: "regularPrice-asc", label: "Sort by Price" },
           { value: "maxCapacity-asc", label: "Sort by Capacity" },
         ]}
       />

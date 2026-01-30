@@ -3,7 +3,7 @@ import Select from "./Select";
 
 function SortBy({ options }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const sortBy = searchParams.get("sortBy") || "name-asc";
+  const sortBy = searchParams.get("sortBy") || "";
   function handleChange(e) {
     searchParams.set("sortBy", e.target.value);
     setSearchParams(searchParams);
