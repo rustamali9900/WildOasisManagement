@@ -2,7 +2,6 @@ import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
 
 export async function getBookings({ filter, sortBy }) {
-  console.log(filter);
   let query = supabase
     .from("bookings")
     .select("*,cabins(name),guests(fullName,email)");
