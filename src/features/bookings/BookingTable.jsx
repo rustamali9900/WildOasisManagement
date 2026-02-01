@@ -4,6 +4,7 @@ import BookingRow from "./BookingRow";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import Empty from "../../ui/Empty";
+import Pagination from "../../ui/Pagination";
 
 function BookingTable() {
   const { isPending, bookings, error } = useBookings();
@@ -30,6 +31,9 @@ function BookingTable() {
             <BookingRow key={booking?.id} booking={booking} />
           )}
         />
+        <Table.Footer>
+          <Pagination count={bookings.length} />
+        </Table.Footer>
       </Table>
     </Menus>
   );
