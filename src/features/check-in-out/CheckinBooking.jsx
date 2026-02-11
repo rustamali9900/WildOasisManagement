@@ -7,7 +7,7 @@ import Heading from "../../ui/Heading";
 import Spinner from "../../ui/Spinner";
 import styled from "styled-components";
 import Button from "../../ui/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Row from "../../ui/Row";
 
 const Box = styled.div`
@@ -20,8 +20,10 @@ const Box = styled.div`
 
 function CheckinBooking() {
   const moveBack = useMoveBack();
-  const [paid, setIsPaid] = useState();
+  const [paid, setIsPaid] = useState(false);
   const { booking, isPending } = useBookingDetail();
+
+  useEffect(() => setIsPaid(booking?.isPaid ?? false), [booking]);
 
   if (isPending) return <Spinner />;
 
@@ -45,13 +47,23 @@ function CheckinBooking() {
       <BookingDataBox booking={booking} />
 
       <Box>
-        <CheckBox>
+        <CheckBox
+          checked={paid}
+          onChange={() => setIsPaid((confirm) => !confirm)}
+          id="confirm"
+          disabled={paid}
+        >
           I confirm that {guests.fullName} has paid the full amount
         </CheckBox>
       </Box>
 
       <ButtonGroup>
-        <Button $variation="primary" $size="medium" onClick={handleCheckin}>
+        <Button
+          $variation="primary"
+          $size="medium"
+          onClick={handleCheckin}
+          disabled={!paid}
+        >
           Check in booking #{bookingId}
         </Button>
         <Button $variation="secondary" $size="small" onClick={moveBack}>
