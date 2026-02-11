@@ -4,7 +4,7 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import { useSettings } from "../settings/useSettings";
 import { formatCurrency } from "../../utils/helpers";
 import ButtonGroup from "../../ui/ButtonGroup";
-import { useChecking } from "./useChecking";
+import { useCheckin } from "./useChecking";
 import CheckBox from "../../ui/Checkbox";
 import Checkbox from "../../ui/Checkbox";
 import Heading from "../../ui/Heading";
@@ -33,7 +33,7 @@ function CheckinBooking() {
 function CheckinForm({ booking, moveBack }) {
   const [paid, setIsPaid] = useState(booking.isPaid);
   const [breakfast, setBreakfast] = useState(false);
-  const { checkIn, isCheckingIn } = useChecking();
+  const { checkIn, isCheckingIn } = useCheckin();
 
   const { settings, isPending: isPendingSettings } = useSettings();
 
