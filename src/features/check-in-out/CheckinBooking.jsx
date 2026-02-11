@@ -4,14 +4,14 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import ButtonGroup from "../../ui/ButtonGroup";
 import CheckBox from "../../ui/Checkbox";
 import Heading from "../../ui/Heading";
-import Spinner from "../../ui/Spinner";
 import styled from "styled-components";
+import Spinner from "../../ui/Spinner";
 import Button from "../../ui/Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Row from "../../ui/Row";
+import { useChecking } from "./useChecking";
 
 const Box = styled.div`
-  /* Box */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
@@ -20,23 +20,23 @@ const Box = styled.div`
 
 function CheckinBooking() {
   const moveBack = useMoveBack();
-  const [paid, setIsPaid] = useState(false);
   const { booking, isPending } = useBookingDetail();
-
-  useEffect(() => setIsPaid(booking?.isPaid ?? false), [booking]);
 
   if (isPending) return <Spinner />;
 
-  const {
-    id: bookingId,
-    guests,
-    totalPrice,
-    numGuests,
-    hasBreakfast,
-    numNights,
-  } = booking;
+  return <CheckinForm key={booking.id} booking={booking} moveBack={moveBack} />;
+}
 
-  function handleCheckin() {}
+function CheckinForm({ booking, moveBack }) {
+  const [paid, setIsPaid] = useState(booking.isPaid);
+  const { checkIn, isCheckingIn } = useChecking();
+
+  const { id: bookingId, guests, totalPrice } = booking;
+
+  function handleCheckin() {
+    if (!paid) return;
+    checkIn(bookingId);
+  }
 
   return (
     <>
@@ -48,12 +48,13 @@ function CheckinBooking() {
 
       <Box>
         <CheckBox
-          checked={paid}
-          onChange={() => setIsPaid((confirm) => !confirm)}
+          checked={paid || booking.isPaid}
+          onChange={() => setIsPaid((s) => !s)}
           id="confirm"
-          disabled={paid}
+          disabled={isCheckingIn}
         >
-          I confirm that {guests.fullName} has paid the full amount
+          I confirm that {guests.fullName} has paid the full amount of{" "}
+          {totalPrice}$
         </CheckBox>
       </Box>
 
@@ -62,7 +63,7 @@ function CheckinBooking() {
           $variation="primary"
           $size="medium"
           onClick={handleCheckin}
-          disabled={!paid}
+          disabled={!paid || isCheckingIn}
         >
           Check in booking #{bookingId}
         </Button>

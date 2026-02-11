@@ -57,6 +57,8 @@ function BookingRow({
     "checked-out": "silver",
   };
 
+  console.log(created_at, numGuests);
+
   return (
     <Table.Row>
       <Cabin>{cabinName}</Cabin>
