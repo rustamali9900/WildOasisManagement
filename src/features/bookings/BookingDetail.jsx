@@ -8,6 +8,7 @@ import Spinner from "../../ui/Spinner";
 import Button from "../../ui/Button";
 import Row from "../../ui/Row";
 import Tag from "../../ui/Tag";
+import { useDeleteBooking } from "../check-in-out/useDeleteBooking";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -17,6 +18,7 @@ const HeadingGroup = styled.div`
 
 function BookingDetail() {
   const { isPending, booking } = useBookingDetails();
+  const { mutate: deleteBooking, isPending: isDeleting } = useDeleteBooking();
   const moveBack = useMoveBack();
 
   if (isPending) return <Spinner />;
@@ -46,6 +48,14 @@ function BookingDetail() {
       <ButtonGroup>
         <Button $variation="secondary" $size="small" onClick={moveBack}>
           Back
+        </Button>
+        <Button
+          $variation="primary"
+          $size="medium"
+          onClick={() => deleteBooking(id)}
+          disabled={isDeleting}
+        >
+          Delete the Booking
         </Button>
       </ButtonGroup>
     </>
