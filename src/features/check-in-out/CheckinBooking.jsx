@@ -1,13 +1,14 @@
-import styled from "styled-components";
 import BookingDataBox from "../../features/bookings/BookingDataBox";
-
-import Row from "../../ui/Row";
-import Heading from "../../ui/Heading";
-import ButtonGroup from "../../ui/ButtonGroup";
-import Button from "../../ui/Button";
-import ButtonText from "../../ui/ButtonText";
-
+import useBookingDetail from "../bookings/useBookingDetail";
 import { useMoveBack } from "../../hooks/useMoveBack";
+import ButtonGroup from "../../ui/ButtonGroup";
+import CheckBox from "../../ui/Checkbox";
+import Heading from "../../ui/Heading";
+import Spinner from "../../ui/Spinner";
+import styled from "styled-components";
+import Button from "../../ui/Button";
+import { useState } from "react";
+import Row from "../../ui/Row";
 
 const Box = styled.div`
   /* Box */
@@ -19,8 +20,10 @@ const Box = styled.div`
 
 function CheckinBooking() {
   const moveBack = useMoveBack();
+  const [paid, setIsPaid] = useState();
+  const { booking, isPending } = useBookingDetail();
 
-  const booking = {};
+  if (isPending) return <Spinner />;
 
   const {
     id: bookingId,
@@ -35,16 +38,23 @@ function CheckinBooking() {
 
   return (
     <>
-      <Row type="horizontal">
+      <Row $type="horizontal">
         <Heading as="h1">Check in booking #{bookingId}</Heading>
-        <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
       </Row>
 
       <BookingDataBox booking={booking} />
 
+      <Box>
+        <CheckBox>
+          I confirm that {guests.fullName} has paid the full amount
+        </CheckBox>
+      </Box>
+
       <ButtonGroup>
-        <Button onClick={handleCheckin}>Check in booking #{bookingId}</Button>
-        <Button variation="secondary" onClick={moveBack}>
+        <Button $variation="primary" $size="medium" onClick={handleCheckin}>
+          Check in booking #{bookingId}
+        </Button>
+        <Button $variation="secondary" $size="small" onClick={moveBack}>
           Back
         </Button>
       </ButtonGroup>

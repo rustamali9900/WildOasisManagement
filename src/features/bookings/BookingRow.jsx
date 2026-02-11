@@ -2,7 +2,7 @@ import { formatDistanceFromNow } from "../../utils/helpers";
 import { formatCurrency } from "../../utils/helpers";
 import { format, isToday } from "date-fns";
 import { useNavigate } from "react-router";
-import { HiEye } from "react-icons/hi2";
+import { HiArrowDownOnSquare, HiEye } from "react-icons/hi2";
 import styled from "styled-components";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
@@ -79,7 +79,7 @@ function BookingRow({
         </span>
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+      <Tag $type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
 
       <Amount>{formatCurrency(totalPrice)}</Amount>
 
@@ -92,6 +92,15 @@ function BookingRow({
           >
             See Details
           </Menus.Button>
+
+          {status === "unconfirmed" && (
+            <Menus.Button
+              icon={<HiArrowDownOnSquare />}
+              onClick={() => navigate(`/checkin/${bookingId}`)}
+            >
+              Check In
+            </Menus.Button>
+          )}
         </Menus.List>
       </Menus.Menu>
     </Table.Row>
