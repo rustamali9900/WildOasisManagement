@@ -5,9 +5,10 @@ import GlobalStyles from "./styles/GlobalStyles";
 import PageNotFound from "./pages/PageNotFound";
 import Dashboard from "./pages/Dashboard";
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./ui/ProtectedRoute";
 import Bookings from "./pages/Bookings";
 import Settings from "./pages/Settings";
-import Applayout from "./ui/Applayout";
+import AppLayout from "./ui/Applayout";
 import Account from "./pages/Account";
 import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
@@ -31,7 +32,13 @@ function App() {
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
-          <Route element={<Applayout />}>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="bookings/:bookingId" element={<Booking />} />
             <Route path="checkin/:bookingId" element={<Checkin />} />
