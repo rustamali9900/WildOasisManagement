@@ -1,8 +1,26 @@
-import { useState } from "react";
-import Button from "../../ui/Button";
-import Form from "../../ui/Form";
-import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
+import styled from "styled-components";
+import Input from "../../ui/Input";
+import { useState } from "react";
+import Form from "../../ui/Form";
+
+const LoginButton = styled.button`
+  font-size: 1.4rem;
+  padding: 1.2rem 1.6rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  /* Your requested brand color */
+  color: var(--color-brand-50);
+  background-color: var(--color-brand-600); /* #4f46e5 */
+
+  &:hover {
+    background-color: var(--color-brand-700);
+  }
+`;
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -16,7 +34,6 @@ function LoginForm() {
         <Input
           type="email"
           id="email"
-          // This makes this form better for password managers
           autoComplete="username"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -32,7 +49,7 @@ function LoginForm() {
         />
       </FormRowVertical>
       <FormRowVertical>
-        <Button size="large">Login</Button>
+        <LoginButton>Login</LoginButton>
       </FormRowVertical>
     </Form>
   );
