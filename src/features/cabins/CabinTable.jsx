@@ -36,7 +36,8 @@ function CabinTable() {
 
   const { isPending, cabins, error } = useCabins();
 
-  if (!cabins?.length) return <Empty resource={"Cabins"} />;
+  if (isPending) return <Spinner />;
+  else if (!cabins?.length) return <Empty resource={"Cabins"} />;
 
   let filteredCabins;
 
@@ -52,7 +53,6 @@ function CabinTable() {
   const [field] = sortBy.split("-");
   const sortedCabins = filteredCabins?.sort((a, b) => a[field] - b[field]);
 
-  if (isPending) return <Spinner />;
   if (error) {
     toast.error(error.message);
     return;
