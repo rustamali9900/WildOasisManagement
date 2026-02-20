@@ -19,7 +19,7 @@ function UpdatePasswordForm() {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow
         label="Password (min 8 characters)"
-        error={errors?.password?.message}
+        errors={errors?.password?.message}
       >
         <Input
           type="password"
@@ -38,7 +38,7 @@ function UpdatePasswordForm() {
 
       <FormRow
         label="Confirm password"
-        error={errors?.passwordConfirm?.message}
+        errors={errors?.passwordConfirm?.message}
       >
         <Input
           type="password"
@@ -53,10 +53,17 @@ function UpdatePasswordForm() {
         />
       </FormRow>
       <FormRow>
-        <Button onClick={reset} type="reset" variation="secondary">
+        <Button
+          onClick={reset}
+          type="reset"
+          $size="medium"
+          $variation="secondary"
+        >
           Cancel
         </Button>
-        <Button disabled={isUpdating}>Update password</Button>
+        <Button disabled={isUpdating} $size="medium" $variation="primary">
+          Update password
+        </Button>
       </FormRow>
     </Form>
   );

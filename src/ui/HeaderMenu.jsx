@@ -19,7 +19,6 @@ function HeaderMenu() {
           <HiOutlineUser />
         </ButtonIcon>
       </li>
-      <li>Dark Mode</li>
       <li>
         <Logout />
       </li>
