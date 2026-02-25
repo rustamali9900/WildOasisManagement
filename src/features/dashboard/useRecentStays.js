@@ -13,8 +13,8 @@ export function useRecentStays() {
   const queryDate = subDays(new Date(), numDays).toISOString();
 
   const { isPending, data: stays } = useQuery({
-    queryKey: ["stays", `last-${numDays}`],
     queryFn: () => getStaysAfterDate(queryDate),
+    queryKey: ["stays", `last-${numDays}`],
   });
 
   const confirmedStays = stays?.filter(

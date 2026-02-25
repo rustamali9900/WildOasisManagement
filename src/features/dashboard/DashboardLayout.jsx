@@ -22,7 +22,9 @@ function DashboardLayout() {
 
   const { cabins, isPending: PendingCabins } = useCabins();
 
-  if (pendingBookings || PendingStays) return <Spinner />;
+  if (pendingBookings || PendingStays || PendingCabins) return <Spinner />;
+
+  console.log(bookings);
 
   return (
     <StyledDashboardLayout>
