@@ -1,10 +1,10 @@
-🏨 The Wild Oasis:
+🏨 **The Wild Oasis:**
+---
 Internal Management Suite
 The Wild Oasis is a professional-grade internal management application designed for boutique hotels and cabin rentals. It serves as a centralized "Control Center" for staff to manage bookings, cabins, and guest data in real-time.
 
 🚀 Key Features & Functionality
 
-</br>
 📊 Data-Driven Dashboard 
 
 * **Real-time Stats:** View critical metrics like total sales, check-ins, and occupancy rates at a glance.
