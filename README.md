@@ -1,18 +1,33 @@
 🏨 The Wild Oasis: Internal Management Suite
 The Wild Oasis is a professional-grade internal management application designed for boutique hotels and cabin rentals. It serves as a centralized "Control Center" for staff to manage bookings, cabins, and guest data in real-time.
 
-🚀 Key Features
+🚀 Key Features & Functionality
+</br>
+📊 Data-Driven Dashboard
+Real-time Stats: View critical metrics like total sales, check-ins, and occupancy rates at a glance.
 
-</br></br>
-📊 Insightful Dashboard: Visualize business performance with real-time statistics on occupancy, sales, and stay durations using interactive charts.
+Interactive Analytics: Dynamic charts visualize revenue trends and stay duration summaries (1-night vs. 14-night stays).
 
-📅 Booking Management: A comprehensive system to view, filter, and manage guest check-ins, check-outs, and booking statuses.
+Operational Awareness: A "Today" activity feed showing guests departing or arriving, allowing staff to handle check-ins/outs with one click.
 
-🏠 Cabin Inventory: Full CRUD capabilities for hotel cabins, allowing staff to update pricing, capacity, and descriptions instantly.
+📅 Advanced Booking Management
+Comprehensive Lifecycle: Manage the entire guest journey from "Unconfirmed" to "Checked In" or "Checked Out".
 
-🔐 Secure Admin-Only Access: A private ecosystem where authenticated users manage the property. New staff accounts are created internally by existing admins.
+Detailed Invoicing: Access granular booking data, including cabin details, guest contact info, and breakdowns of cabin vs. breakfast costs.
 
-⚙️ Global Settings: Dynamic configuration for hotel-wide variables like breakfast prices and stay lengths.
+Smart Filtering: Sort and filter bookings by status to stay organized during peak seasons.
+
+🏠 Cabin & Property Control
+Inventory Management: Create, update, or delete cabins with support for image uploads and discount toggles.
+
+Dynamic Pricing: Easily adjust base prices and seasonal discounts that reflect across the system instantly.
+
+🔐 Staff Administration
+Internal Authentication: A secure system where only logged-in staff can access the management suite.
+
+User Provisioning: Existing admins can create new staff accounts, ensuring a controlled environment.
+
+Profile Personalization: Users can update their own avatars and account details to maintain an updated staff directory.
 
 </br>
 
