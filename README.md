@@ -8,7 +8,7 @@ The Wild Oasis is a professional-grade internal management application designed 
 📊 Data-Driven Dashboard
 Real-time Stats: View critical metrics like total sales, check-ins, and occupancy rates at a glance.
 Interactive Analytics: Dynamic charts visualize revenue trends and stay duration summaries (1-night vs. 14-night stays).
-Operational Awareness: A "Today" activity feed showing guests departing or arriving, allowing staff to handle check-ins/outs with one click.
+Operational Awareness: A "Today" activity feed showing guests departing or arriving, allowing staff to handle check-ins/outs with one click.</br>
 
 
 📅 Advanced Booking Management
