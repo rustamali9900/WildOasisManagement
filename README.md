@@ -5,26 +5,34 @@ The Wild Oasis is a professional-grade internal management application designed 
 🚀 Key Features & Functionality
 
 </br>
-📊 Data-Driven Dashboard
-Real-time Stats: View critical metrics like total sales, check-ins, and occupancy rates at a glance.
-Interactive Analytics: Dynamic charts visualize revenue trends and stay duration summaries (1-night vs. 14-night stays).
-Operational Awareness: A "Today" activity feed showing guests departing or arriving, allowing staff to handle check-ins/outs with one click.</br>
+📊 Data-Driven Dashboard 
 
+* **Real-time Stats:** View critical metrics like total sales, check-ins, and occupancy rates at a glance.
+* **Interactive Analytics:** Dynamic charts visualize revenue trends and stay duration summaries (1-night vs. 14-night stays).
+* **Operational Awareness:** A "Today" activity feed showing guests departing or arriving, allowing staff to handle check-ins/outs with one click.
 
-🏠 Cabin & Property Control
-Inventory Management: Create, update, or delete cabins with support for image uploads and discount toggles.
-Dynamic Pricing: Easily adjust base prices and seasonal discounts that reflect across the system instantly.
+---
 
-🔐 Staff Administration
-Internal Authentication: A secure system where only logged-in staff can access the management suite.
-User Provisioning: Existing admins can create new staff accounts, ensuring a controlled environment.
-Profile Personalization: Users can update their own avatars and account details to maintain an updated staff directory.
+🏠 Cabin & Property Control 
 
-📅 Advanced Booking Management
-Comprehensive Lifecycle: Manage the entire guest journey from "Unconfirmed" to "Checked In" or "Checked Out"
-Detailed Invoicing: Access granular booking data, including cabin details, guest contact info, and breakdowns of cabin vs. breakfast costs.
-Smart Filtering: Sort and filter bookings by status to stay organized during peak seasons.
+* **Inventory Management:** Create, update, or delete cabins with support for image uploads and discount toggles.
+* **Dynamic Pricing:** Easily adjust base prices and seasonal discounts that reflect across the system instantly.
 
+---
+
+🔐 Staff Administration 
+
+* **Internal Authentication:** A secure system where only logged-in staff can access the management suite.
+* **User Provisioning:** Existing admins can create new staff accounts, ensuring a controlled environment.
+* **Profile Personalization:** Users can update their own avatars and account details to maintain an updated staff directory.
+
+---
+
+📅 Advanced Booking Management 
+
+* **Comprehensive Lifecycle:** Manage the entire guest journey from "Unconfirmed" to "Checked In" or "Checked Out."
+* **Detailed Invoicing:** Access granular booking data, including cabin details, guest contact info, and breakdowns of cabin vs. breakfast costs.
+* **Smart Filtering:** Sort and filter bookings by status to stay organized during peak seasons.
 </br>
 
 🛠️ Technical Stack
