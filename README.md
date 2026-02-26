@@ -1,46 +1,38 @@
-🏨 The Wild Oasis: Internal Management Suite
+🏨 The Wild Oasis:
+Internal Management Suite
 The Wild Oasis is a professional-grade internal management application designed for boutique hotels and cabin rentals. It serves as a centralized "Control Center" for staff to manage bookings, cabins, and guest data in real-time.
 
 🚀 Key Features & Functionality
+
 </br>
 📊 Data-Driven Dashboard
 Real-time Stats: View critical metrics like total sales, check-ins, and occupancy rates at a glance.
-
 Interactive Analytics: Dynamic charts visualize revenue trends and stay duration summaries (1-night vs. 14-night stays).
-
 Operational Awareness: A "Today" activity feed showing guests departing or arriving, allowing staff to handle check-ins/outs with one click.
 
 📅 Advanced Booking Management
-Comprehensive Lifecycle: Manage the entire guest journey from "Unconfirmed" to "Checked In" or "Checked Out".
-
+Comprehensive Lifecycle: Manage the entire guest journey from "Unconfirmed" to "Checked In" or "Checked Out"
 Detailed Invoicing: Access granular booking data, including cabin details, guest contact info, and breakdowns of cabin vs. breakfast costs.
-
 Smart Filtering: Sort and filter bookings by status to stay organized during peak seasons.
 
 🏠 Cabin & Property Control
 Inventory Management: Create, update, or delete cabins with support for image uploads and discount toggles.
-
 Dynamic Pricing: Easily adjust base prices and seasonal discounts that reflect across the system instantly.
 
 🔐 Staff Administration
 Internal Authentication: A secure system where only logged-in staff can access the management suite.
-
 User Provisioning: Existing admins can create new staff accounts, ensuring a controlled environment.
-
 Profile Personalization: Users can update their own avatars and account details to maintain an updated staff directory.
 
 </br>
 
 🛠️ Technical Stack
-Frontend: React + Vite.
 
-State Management: TanStack Query (React Query) for efficient caching and data synchronization.
-
-Backend & Auth: Supabase (PostgreSQL).
-
-Styling: Styled Components.
-
-Charts: Recharts.
+1. Frontend: React + Vite.
+2. State Management: TanStack Query (React Query) for efficient caching and data synchronization.
+3. Backend & Auth: Supabase (PostgreSQL).
+4. Styling: Styled Components.
+5. Charts: Recharts.
 
 
 </br></br>
