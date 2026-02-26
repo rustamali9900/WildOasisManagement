@@ -40,7 +40,6 @@ const NoActivity = styled.p`
 
 function TodayActivity() {
   const { activities, isPending } = useTodayActivity();
-
   return (
     <StyledToday>
       <Row type="horizontal">

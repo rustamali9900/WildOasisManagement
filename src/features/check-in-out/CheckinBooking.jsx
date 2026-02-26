@@ -1,20 +1,18 @@
-import styled from "styled-components";
 import BookingDataBox from "../../features/bookings/BookingDataBox";
-
-import Row from "../../ui/Row";
-import Heading from "../../ui/Heading";
-import ButtonGroup from "../../ui/ButtonGroup";
-import Button from "../../ui/Button";
-import ButtonText from "../../ui/ButtonText";
-import Spinner from "../../ui/Spinner";
-
-import { useMoveBack } from "../../hooks/useMoveBack";
 import useBookingDetail from "../bookings/useBookingDetail";
-import { useEffect, useState } from "react";
-import Checkbox from "../../ui/Checkbox";
-import { formatCurrency } from "../../utils/helpers";
-import { useCheckin } from "./useChecking";
+import { useMoveBack } from "../../hooks/useMoveBack";
 import { useSettings } from "../settings/useSettings";
+import { formatCurrency } from "../../utils/helpers";
+import ButtonGroup from "../../ui/ButtonGroup";
+import ButtonText from "../../ui/ButtonText";
+import { useEffect, useState } from "react";
+import { useCheckin } from "./useChecking";
+import Checkbox from "../../ui/Checkbox";
+import styled from "styled-components";
+import Heading from "../../ui/Heading";
+import Spinner from "../../ui/Spinner";
+import Button from "../../ui/Button";
+import Row from "../../ui/Row";
 
 const Box = styled.div`
   /* Box */
@@ -27,15 +25,15 @@ const Box = styled.div`
 function CheckinBooking() {
   const [confirmPaid, setConfirmPaid] = useState(false);
   const [addBreakfast, setAddBreakfast] = useState(false);
-  const { booking, isLoading } = useBookingDetail();
-  const { settings, isLoading: isLoadingSettings } = useSettings();
+  const { booking, isPending } = useBookingDetail();
+  const { settings, isPending: isLoadingSettings } = useSettings();
 
   useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking]);
 
   const moveBack = useMoveBack();
-  const { checkin, isCheckingIn } = useCheckin();
+  const { checkIn, isCheckingIn } = useCheckin();
 
-  if (isLoading || isLoadingSettings) return <Spinner />;
+  if (isPending || isLoadingSettings) return <Spinner />;
 
   const {
     id: bookingId,
@@ -53,7 +51,7 @@ function CheckinBooking() {
     if (!confirmPaid) return;
 
     if (addBreakfast) {
-      checkin({
+      checkIn({
         bookingId,
         breakfast: {
           hasBreakfast: true,
@@ -62,7 +60,7 @@ function CheckinBooking() {
         },
       });
     } else {
-      checkin({ bookingId, breakfast: {} });
+      checkIn({ bookingId, breakfast: {} });
     }
   }
 

@@ -85,22 +85,25 @@ export async function getStaysAfterDate(date) {
 
 // Activity means that there is a check in or a check out today
 export async function getStaysTodayActivity() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
   const { data, error } = await supabase
     .from("bookings")
     .select("*, guests(fullName, nationality, countryFlag)")
     .or(
-      `and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,endDate.eq.${getToday()})`,
+      `and(status.eq.unconfirmed,startDate.gte.${today.toISOString()},startDate.lt.${tomorrow.toISOString()}),and(status.eq.checked-in,endDate.gte.${today.toISOString()},endDate.lt.${tomorrow.toISOString()})`,
     )
     .order("created_at");
-
-  // Equivalent to this. But by querying this, we only download the data we actually need, otherwise we would need ALL bookings ever created
-  // (stay.status === 'unconfirmed' && isToday(new Date(stay.startDate))) ||
-  // (stay.status === 'checked-in' && isToday(new Date(stay.endDate)))
 
   if (error) {
     console.error(error);
     throw new Error("Bookings could not get loaded");
   }
+
   return data;
 }
 
@@ -120,7 +123,6 @@ export async function updateBooking(id, obj) {
 }
 
 export async function deleteBooking(id) {
-  // REMEMBER RLS POLICIES
   const { data, error } = await supabase.from("bookings").delete().eq("id", id);
 
   if (error) {

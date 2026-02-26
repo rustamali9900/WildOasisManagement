@@ -7,7 +7,5 @@ export function useTodayActivity() {
     queryKey: ["today-activity"],
   });
 
-  console.log(activities);
-
   return { activities, isPending };
 }
