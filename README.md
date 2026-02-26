@@ -11,11 +11,6 @@ Interactive Analytics: Dynamic charts visualize revenue trends and stay duration
 Operational Awareness: A "Today" activity feed showing guests departing or arriving, allowing staff to handle check-ins/outs with one click.</br>
 
 
-📅 Advanced Booking Management
-Comprehensive Lifecycle: Manage the entire guest journey from "Unconfirmed" to "Checked In" or "Checked Out"
-Detailed Invoicing: Access granular booking data, including cabin details, guest contact info, and breakdowns of cabin vs. breakfast costs.
-Smart Filtering: Sort and filter bookings by status to stay organized during peak seasons.
-
 🏠 Cabin & Property Control
 Inventory Management: Create, update, or delete cabins with support for image uploads and discount toggles.
 Dynamic Pricing: Easily adjust base prices and seasonal discounts that reflect across the system instantly.
@@ -24,6 +19,11 @@ Dynamic Pricing: Easily adjust base prices and seasonal discounts that reflect a
 Internal Authentication: A secure system where only logged-in staff can access the management suite.
 User Provisioning: Existing admins can create new staff accounts, ensuring a controlled environment.
 Profile Personalization: Users can update their own avatars and account details to maintain an updated staff directory.
+
+📅 Advanced Booking Management
+Comprehensive Lifecycle: Manage the entire guest journey from "Unconfirmed" to "Checked In" or "Checked Out"
+Detailed Invoicing: Access granular booking data, including cabin details, guest contact info, and breakdowns of cabin vs. breakfast costs.
+Smart Filtering: Sort and filter bookings by status to stay organized during peak seasons.
 
 </br>
 
