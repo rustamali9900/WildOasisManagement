@@ -8,3 +8,5 @@ React Hook Forms
 Miscellenious
 
 React-toast
+react error Boundary
+react icons
