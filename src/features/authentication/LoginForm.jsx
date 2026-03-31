@@ -26,8 +26,8 @@ const LoginButton = styled.button`
 `;
 
 function LoginForm() {
-  const [email, setEmail] = useState("  ");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("rustamali9011@gmail.com");
+  const [password, setPassword] = useState("12345678");
 
   const { login, isPending } = useLogin();
 
